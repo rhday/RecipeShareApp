@@ -3,13 +3,17 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def new
+        @post = Post.find_by_id(params[:post_id])
         @comment = Comment.new
     end 
 
     def create
+        @post = Post.find_by_id(params[:post_id]) #make into helper method
         @comment = current_user.comments.build(comment_params)
+        @comment.post = @post #assigning comment to specific post
+        #byebug
         if @comment.save
-            redirect_to comments_path
+            redirect_to posts_path
         else
           render :new  
         end
@@ -21,7 +25,7 @@ class CommentsController < ApplicationController
 
     def show
         @comment = Comment.find_by_id(params[:id])
-        redirect_to comments_path
+        redirect_to post_comment_path
     end 
 
     private
