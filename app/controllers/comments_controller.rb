@@ -7,13 +7,21 @@ class CommentsController < ApplicationController
     end 
 
     def create
-        @comment = 
+        @comment = current_user.comments.build(comment_params)
+        if @comment.save
+            redirect_to comments_path
+        else
+          render :new  
+        end
     end 
 
     def index
+        @comments = Comment.all
     end
 
     def show
+        @comment = Comment.find_by_id(params[:id])
+        redirect_to comments_path
     end 
 
     private
