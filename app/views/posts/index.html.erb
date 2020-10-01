@@ -1,6 +1,11 @@
 <h1>All Posts!</h1>
 
 <% @posts.each do |post| %>
-    <%= post.title %>
+    <%= "#{post.title}:" %>
+    <br>
     <%= post.content %>
+    <br>
+    <%= link_to "Comment on this post", new_comment_path %>
+    <br>
+    <br>
 <% end %>
