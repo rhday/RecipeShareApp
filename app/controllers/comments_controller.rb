@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
 
+    before_action :redirect_if_not_logged_in
+
     def new
+        @comment = Comment.new
     end 
 
-    def create 
+    def create
+        @comment = 
     end 
 
     def index
@@ -15,6 +19,9 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
+        params.require(:comment).permit(:content, :user_id, :post_id)
     end 
-    
+
 end
+
+
