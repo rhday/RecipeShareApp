@@ -5,7 +5,11 @@
     <br>
     <%= post.content %>
     <br>
-    <%= link_to "Comment on this post", new_post_comment_path(post) %>
+    <%= button_to "See Comments", post_comments_path(post), method: :get %>
+    <%= button_to "Comment on this post", new_post_comment_path(post), method: :get %>
+    <br>
     <br>
     <br>
 <% end %>
+
+

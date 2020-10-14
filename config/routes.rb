@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   resources :categories
   #resources :comments
-  resources :users
+  resources :users do
+    resources :posts, only: [:new, :create, :index] 
+  end 
   resources :posts do
     resources :comments
   end 
