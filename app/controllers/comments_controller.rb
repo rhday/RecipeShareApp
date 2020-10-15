@@ -20,7 +20,11 @@ class CommentsController < ApplicationController
     end 
 
     def index
-        @comments = Comment.all
+        if params[:post_id] && @post = Post.find_by_id(params[:post_id])
+            @comments = @post.comments 
+        else @error = "That post does not exist" if params[:post_id]
+            @comments = Comment.all
+        end
     end
 
     def show
