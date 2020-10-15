@@ -1,4 +1,8 @@
+<% if @post %>
+<h1>Add a comment for <%= @post.title %></h1>
+<% else %>
 <h1>Make a comment!</h1>
+<% end %>
 
 <%= form_for [@post, @comment] do |f| %>
 

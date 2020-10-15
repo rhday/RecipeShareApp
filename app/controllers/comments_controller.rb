@@ -3,8 +3,12 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def new
-        @post = Post.find_by_id(params[:post_id])
-        @comment = Comment.new
+        if params[:post_id] && @post = Post.find_by_id(params[:post_id])
+            @comment = @post.comments.build
+        else
+            @error = "That post doesn't exist" if params[:post_id]
+            @comment = Comment.new
+        end 
     end 
 
     def create
