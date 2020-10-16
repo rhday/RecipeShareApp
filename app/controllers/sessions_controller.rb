@@ -19,12 +19,12 @@ class SessionsController < ApplicationController
     def google
         #find_or_create a user using the attributes auth
         @user = User.find_or_create_by(email: auth["info"]["email"]) do |user|
-            user.name = auth["info"]["first_name"]
+            user.username = auth["info"]["first_name"]
             user.password = SecureRandom.hex(12)#amount of characters in password 
         end 
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(user)
+            redirect_to user_path(@user)
         else
             redirect_to '/'
         end
