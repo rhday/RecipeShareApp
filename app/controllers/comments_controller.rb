@@ -6,8 +6,8 @@ class CommentsController < ApplicationController
         if params[:post_id] && @post = Post.find_by_id(params[:post_id])
             @comment = @post.comments.build
         else
-            @error = "That post doesn't exist" if params[:post_id]
-            @comment = Comment.new
+            flash[:message] = "You can't comment on a post that does not exist!"
+           redirect_to posts_path
         end 
     end 
 

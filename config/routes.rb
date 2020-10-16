@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   #logout route
   delete '/logout' => 'sessions#destroy'
 
+  #omniauth callback route
+  get "/auth/google_oauth2/callback" => 'sessions#google'
+  #do this way to make it dynamic. If adding google, facebook and github all responding to the same place in the controller
+  ## get "/auth/google_oauth2/callback" => 'sessions#create/google/name
+
   resources :categories
   #resources :comments
   resources :users do
