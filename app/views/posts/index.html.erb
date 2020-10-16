@@ -1,7 +1,7 @@
 <h1>All Posts!</h1>
 
 <% @posts.each do |post| %>
-    <%= "#{post.title}:" %>
+    <%= "#{post.title}:" %> - <%= post.comments.size %> comment(s)
     <br>
     <%= post.content %>
     <br>

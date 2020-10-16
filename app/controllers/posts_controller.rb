@@ -15,7 +15,12 @@ class PostsController < ApplicationController
     end 
 
     def index
-        @posts = Post.all
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @posts = @user.posts.alpha
+        else
+            flash[:message] = "That post does not exist" if params[:user_id]
+            @posts = Post.alpha
+        end
     end 
 
     def show 
