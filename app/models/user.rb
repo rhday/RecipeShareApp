@@ -4,19 +4,7 @@ class User < ApplicationRecord
     has_many :commented_posts, through: :comments, source: :post 
     has_many :categories, through: :posts
     has_secure_password 
+
+    validates :username, :email, presence: true
+    
 end
-
-# Nested Routes
-
-# new, show or index
-
-'/users'
-
-'/users/:id/posts'
-'/users/:id/comments'
-
-'/posts'
-
-'/posts/:id/comments'
-
-'/comments'

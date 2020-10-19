@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :users, through: :comments
 
+  validates :content, :title, presence: true
+
   scope :alpha, -> { order(:title)} #orders anything it is called on alphabetically
   
 

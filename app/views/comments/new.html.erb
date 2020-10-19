@@ -4,6 +4,9 @@
 <h1>Make a comment!</h1>
 <% end %>
 
+
+<%= render partial: "layout/errors", locals: {object: @post} %>
+
 <%= form_for [@post, @comment] do |f| %>
 
     <%= f.label :content %>
