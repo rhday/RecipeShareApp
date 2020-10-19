@@ -17,10 +17,18 @@ Rails.application.routes.draw do
   #do this way to make it dynamic. If adding google, facebook and github all responding to the same place in the controller
   ## get "/auth/google_oauth2/callback" => 'sessions#create/google/name
 
+  #edit post route
+  get 'posts/:id/edit', to: 'posts#edit', as: :edit_post
+  #update post route
+  patch 'posts/:id', to: 'posts#update'
+  #edit comment route
+
+  #update comment route
+
   resources :categories
   #resources :comments
   resources :users do
-    resources :posts, only: [:new, :create, :index] 
+    resources :posts, only: [:new, :create, :index, :edit, :update] 
   end 
   resources :posts do
     resources :comments
