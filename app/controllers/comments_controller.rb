@@ -36,20 +36,30 @@ class CommentsController < ApplicationController
         redirect_to post_comment_path
     end 
 
-    def edit 
+   # def edit 
+   # #    @comment = Comment.find_by_id(params[:id])
+   #     redirect_to post_comment_path if !@comment || @comment.user != current_user
+   # end
+
+    #def update
+    #    @comment = Comment.find_by_id(params[:id])
+    #    redirect_to post_comment_path if !@comment || @comment.user != current_user
+    #    if @comment.update(comment_params)
+    #        redirect_to post_comment_path(@comment)
+    #    else
+    #        render :edit
+    #    end
+    #end 
+    def edit
         @comment = Comment.find_by_id(params[:id])
-        redirect_to post_comment_path if !@comment || @comment.user != current_user
     end 
 
-    def update
-        @comment = Comment.find_by_id(params[:id])
-        redirect_to post_comment_path if !@comment || @comment.user != current_user
-        if @comment.update(comment_params)
-            redirect_to post_comment_path(@comment)
-        else
-            render :edit
-        end
-    end 
+    def update 
+        ###@comment = Comment.find_by_id(params[:id])
+        ##@comment.update(content: params[:comment][:content])
+        #redirect_to posts_path(@post)
+        raise params.inspect
+    end
 
     private
 

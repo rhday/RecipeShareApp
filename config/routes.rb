@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   #update post route
   patch 'posts/:id', to: 'posts#update'
   #edit comment route
-
+  get 'comments/:id/edit', to: 'comments#edit', as: :edit_comment
   #update comment route
+  patch 'comments/:id', to: 'comments#update'
 
   resources :categories
   #resources :comments
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :index, :edit, :update] 
   end 
   resources :posts do
-    resources :comments
+    resources :comments, only: [:new, :create, :index, :edit, :update]
   end 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
