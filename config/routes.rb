@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   #update post route
   patch 'posts/:id', to: 'posts#update'
   #edit comment route
-  get 'comments/:id/edit', to: 'comments#edit', as: :edit_comment
+  get 'posts/:id/comments/:id/edit', to: 'comments#edit', as: :edit_comment
   #update comment route
-  patch 'comments/:id', to: 'comments#update'
+  patch 'posts/:id/comments/:id', to: 'comments#update'
 
   resources :categories
   #resources :comments

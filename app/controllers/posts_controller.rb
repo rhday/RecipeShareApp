@@ -30,12 +30,17 @@ class PostsController < ApplicationController
     
     def edit
         @post = Post.find_by_id(params[:id])
+        redirect_to posts_path if !@post || @post.user != current_user
     end 
 
     def update 
         @post = Post.find_by_id(params[:id])
-        @post.update(title: params[:post][:title], content: params[:post][:content])
-        redirect_to posts_path(@post)
+        redirect_to posts_path if !@post || @post.user != current_user
+        if @post.update(post_params)
+            redirect_to posts_path(@post)
+        else
+            render :edit
+        end
     end 
 
     private

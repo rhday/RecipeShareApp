@@ -1,12 +1,15 @@
 <h1>All Posts!</h1>
 
 <% @posts.each do |post| %>
-    <%= "#{post.title}:" %> - <%= post.comments.size %> comment(s)
+    <%= "#{post.title}" %> - <%= post.comments.size %> comment(s)
     <br>
     <%= post.content %>
     <br>
     <%= link_to "See Comments", post_comments_path(post)%>
     <%= button_to "Comment on this post", new_post_comment_path(post), method: :get %>
+    <% if current_user.id == post.user_id %>
+        <%= link_to "Edit Post", edit_user_post_path(post.user_id,post)%>
+    <% end %>
     <br>
     <br>
     <br>
