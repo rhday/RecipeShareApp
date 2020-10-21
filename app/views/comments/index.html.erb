@@ -4,9 +4,9 @@
     <br>
     <%= comment.content %>
     <br>
-    <%= link_to "Add a new comment", new_post_comment_path(@post) %>
-    <%= link_to "Edit comment", edit_comment_path(@post) %>
-    <br>
-    <br>
-    <br>
+    <% if current_user.id == comment.user_id %>
+        <%= link_to "Edit comment", edit_comment_path(@post, comment) %>
+        <%= button_to "Delete comment", edit_comment_path(@post, comment), method: :delete %>
+    <% end %>
 <% end %>
+<%= link_to "Add a new comment", new_post_comment_path(@post) %>
