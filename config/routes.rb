@@ -21,10 +21,14 @@ Rails.application.routes.draw do
   get 'posts/:id/edit', to: 'posts#edit', as: :edit_post
   #update post route
   patch 'posts/:id', to: 'posts#update'
+  #delete post route
+  delete 'posts/:id/edit', to: 'posts#delete'
   #edit comment route
   get 'posts/:id/comments/:id/edit', to: 'comments#edit', as: :edit_comment
   #update comment route
   patch 'posts/:id/comments/:id', to: 'comments#update'
+  #delete comment route
+  delete 'posts/:id/comments/:id/edit', to: 'comments#delete'
 
   resources :categories
   #resources :comments
