@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :find_post, only: [:show, :edit, :update, :delete] #in each of these actions the post will be automaticaly found.
+    
 
     def new 
         @post = Post.new
@@ -24,17 +26,14 @@ class PostsController < ApplicationController
     end 
 
     def show 
-        @post = Post.find_by_id(params[:id])
         redirect_to posts_path if !@post
     end
     
     def edit
-        @post = Post.find_by_id(params[:id])
         redirect_to posts_path if !@post || @post.user != current_user
     end 
 
     def update 
-        @post = Post.find_by_id(params[:id])
         redirect_to posts_path if !@post || @post.user != current_user
         if @post.update(post_params)
             redirect_to posts_path(@post)
@@ -44,12 +43,15 @@ class PostsController < ApplicationController
     end 
 
     def delete
-        @post = Post.find_by_id(params[:id])
         @post.destroy
         redirect_to posts_path
     end 
 
     private
+
+    def find_post
+        @post = Post.find_by_id(params[:id])
+    end 
 
     def post_params
         params.require(:post).permit(:title, :content, :category_id)
