@@ -4,8 +4,8 @@
 <h1>Make a comment!</h1>
 <% end %>
 
+<%= render partial: "layouts/errors", locals: {object: @comment} %>
 
-<!--<%# render partial: "layout/errors", locals: {object: @post} %>-->
 
 <%= form_for [@post, @comment] do |f| %>
 

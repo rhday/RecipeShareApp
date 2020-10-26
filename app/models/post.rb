@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   validates :content, :title, presence: true
 
   scope :alpha, -> { order(:title)} #orders anything it is called on alphabetically
+  scope :most_comments, -> {left_joins(:comments).group('posts.id').order('count(comments.post_id) desc')}
   
 
   def category_attributes=(attr)
