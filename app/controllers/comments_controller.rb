@@ -38,7 +38,6 @@ class CommentsController < ApplicationController
     end 
 
     def edit
-        
         redirect_to post_comments_path(@comment.post_id) if !@comment || @comment.user != current_user
     end
 
