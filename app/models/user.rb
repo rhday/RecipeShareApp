@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_many :categories, through: :posts
     has_secure_password 
 
-    validates :username, :email, presence: true
-    
+    validates :username, presence: true
+    validates :email, confirmation: true
+    validates :email_confirmation, presence: true
+
 end
