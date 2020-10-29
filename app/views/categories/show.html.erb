@@ -1,0 +1,9 @@
+<h1><%= @category.name %></h1>
+
+<% @category.posts.each do |cp|%>
+
+    <%= link_to cp.title, post_comments_path(cp) %>
+
+<% end %>
+
+

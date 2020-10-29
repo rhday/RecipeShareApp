@@ -30,10 +30,13 @@ Rails.application.routes.draw do
   #delete comment route
   delete 'posts/:post_id/comments/:comment_id/edit', to: 'comments#delete'
 
-  resources :categories
+  resources :categories do
+  end 
   #resources :comments
   resources :users do
-    resources :posts, only: [:new, :create, :index, :edit, :update] 
+    resources :posts, only: [:new, :create, :index, :edit, :update] do
+    resources :comments, only: [:new, :create, :index, :edit, :update]
+    end
   end 
   resources :posts do
     resources :comments, only: [:new, :create, :index, :edit, :update]
