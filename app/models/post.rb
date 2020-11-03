@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :category
   
-  has_many :comments
+  has_many :comments, dependent: :destroy #whenever you delete a post this will delete all of the posts comments too
   has_many :users, through: :comments
 
   validates :content, :title, presence: true

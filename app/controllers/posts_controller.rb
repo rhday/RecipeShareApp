@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     def create
         @post = current_user.posts.build(post_params)
         if @post.save
-            redirect_to posts_path
+            redirect_to user_posts_path(current_user)
         else
             render :new
         end
@@ -18,25 +18,25 @@ class PostsController < ApplicationController
 
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @posts = @user.posts.alpha
+            @posts = Post.all.alpha
         else
             flash[:message] = "That post does not exist" if params[:user_id]
-            @posts = Post.alpha
+            @posts = Post.all.alpha
         end
     end 
 
     def show 
-        redirect_to posts_path if !@post
+        redirect_to user_posts_path(current_user) if !@post
     end
     
     def edit
-        redirect_to posts_path if !@post || @post.user != current_user
+        redirect_to user_posts_path(current_user) if !@post || @post.user != current_user
     end 
 
     def update 
-        redirect_to posts_path if !@post || @post.user != current_user
+        redirect_to user_posts_path(current_user) if !@post || @post.user != current_user
         if @post.update(post_params)
-            redirect_to posts_path(@post)
+            redirect_to user_posts_path(current_user, @post)
         else
             render :edit
         end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
     def delete
         @post.destroy
-        redirect_to posts_path
+        redirect_to user_posts_path(current_user)
     end 
 
     private

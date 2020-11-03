@@ -7,7 +7,7 @@
 <%= render partial: "layouts/errors", locals: {object: @comment} %>
 
 
-<%= form_for [@post, @comment] do |f| %>
+<%= form_for [current_user, @post, @comment] do |f| %>
 
     <%= f.label :content %>
     <%= f.text_field :content %>

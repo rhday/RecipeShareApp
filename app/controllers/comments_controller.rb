@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
             @comment = @post.comments.build
         else
             flash[:message] = "You can't comment on a post that does not exist!"
-           redirect_to posts_path
+           redirect_to user_posts_path(current_user)
         end 
     end 
 
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
         @comment.post = @post #assigning comment to specific post
         #byebug
         if @comment.save
-            redirect_to posts_path
+            redirect_to user_posts_path(current_user)
         else
           render :new  
         end
@@ -33,18 +33,14 @@ class CommentsController < ApplicationController
         end
     end
 
-    def show
-        redirect_to post_comment_path
-    end 
-
     def edit
-        redirect_to post_comments_path(@comment.post_id) if !@comment || @comment.user != current_user
+        redirect_to user_post_comments_path(@comment.post.user, @comment.post_id) if !@comment || @comment.user != current_user
     end
 
     def update
-        redirect_to post_comments_path(@comment.post_id) if !@comment || @comment.user != current_user
+        redirect_to user_post_comments_path(@comment.post.user, @comment.post_id) if !@comment || @comment.user != current_user
     if @comment.update(comment_params)
-        redirect_to post_comments_path(@comment.post_id)
+        redirect_to user_post_comments_path(@comment.post.user, @comment.post_id)
     else
         render :edit
     end
@@ -52,7 +48,7 @@ class CommentsController < ApplicationController
 
     def delete
         @comment.destroy
-        redirect_to post_comments_path(@comment.post_id)
+        redirect_to user_post_comments_path(@comment.post.user, @comment.post_id)
     end 
    
 
