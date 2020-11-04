@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
 
     validates :post, uniqueness: { scope: :user_id, message: "can only be commented on once!"}
 
+    scope :alpha, -> { order(:content)}
+
 end

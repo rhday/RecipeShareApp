@@ -18,10 +18,10 @@ class PostsController < ApplicationController
 
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @posts = Post.all.alpha
+            @posts = Post.all.most_comments
         else
             flash[:message] = "That post does not exist" if params[:user_id]
-            @posts = Post.all.alpha
+            @posts = Post.all.most_comments
         end
     end 
 

@@ -9,13 +9,13 @@ class Post < ApplicationRecord
 
   validate :too_many_posts
 
-  scope :alpha, -> { order(:title)} #orders anything it is called on alphabetically
+  #orders anything it is called on alphabetically
   scope :most_comments, -> {left_joins(:comments).group('posts.id').order('count(comments.post_id) desc')}
   
 
-  def category_attributes=(attr)
-    self.category = Category.find_or_create_by(attr) if !attr[:name].blank?
-  end 
+  #def category_attributes=(attr)
+  #  self.category = Category.find_or_create_by(attr) if !attr[:name].blank?
+  #end 
 
   def too_many_posts
     
