@@ -1,6 +1,7 @@
 <h1>All Recipes!</h1>
-
+<div id="recipes_container">
 <% @posts.each do |post| %>
+<div>
     <%= "#{post.title}" %> - <%= post.comments.size %> comment(s)
     <br>
     <%= post.content %>
@@ -14,6 +15,7 @@
     <br>
     <br>
     <br>
+    </div>
 <% end %>
-
+</div>
 

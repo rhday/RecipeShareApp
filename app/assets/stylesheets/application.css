@@ -46,6 +46,16 @@
         text-align: center;
     }
   }
-  
+  #recipes_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  input[type="submit"] {
+    background-color: aliceblue;
+    border-radius: 25%;
+  }
+  a:hover {
+    color: black;
+  }
   
  
