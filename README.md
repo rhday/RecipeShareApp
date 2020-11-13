@@ -23,40 +23,12 @@ Create a new recipe by clicking on the "Add Recipe" link in the navbar. The user
 
 A user can comment on any post they like by clicking on the "Comment on this recipe" button. They can also view all the previous comments associated to a specific post by clicking on the "See Comments" link. This is where a user can edit or delete their own comments.
 
+A user can navigate the recipes by category if they see fit. They can do so by clickin gon the "Categories" link in the navbar where they will be given the option of following a link to either "Starters," "Mains" and "Desserts." Once the user has selected the category they would like they will see a list of the recipes in that categories
 
+Logout by clicking the "Logout" link in the navbar.
 
 ```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-
-
-
-
-
-
-
-
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
