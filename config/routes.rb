@@ -32,14 +32,15 @@ Rails.application.routes.draw do
 
   resources :categories do
   end 
-  #resources :comments
+
   resources :users do
     resources :posts, only: [:new, :create, :index, :edit, :update] do
     resources :comments, only: [:new, :create, :index, :edit, :update]
     end
   end 
-  #resources :posts do
+end
+
+#resources :posts do
   #  resources :comments, only: [:new, :create, :index, :edit, :update]
   #end 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
