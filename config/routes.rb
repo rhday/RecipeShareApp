@@ -24,20 +24,21 @@ Rails.application.routes.draw do
   #delete post route
   delete 'posts/:id/edit', to: 'posts#delete'
   #edit comment route
-  get 'posts/:post_id/comments/:comment_id/edit', to: 'comments#edit', as: :edit_comment
+  get 'posts/:post_id/comments/:id/edit', to: 'comments#edit', as: :edit_comment
   #update comment route
-  patch 'posts/:post_id/comments/:comment_id', to: 'comments#update'
+  patch 'posts/:post_id/comments/:id', to: 'comments#update'
   #delete comment route
-  delete 'posts/:post_id/comments/:comment_id/edit', to: 'comments#delete'
+  delete 'posts/:post_id/comments/:id/edit', to: 'comments#delete'
 
   resources :categories do
   end 
 
   resources :users do
     resources :posts, only: [:new, :create, :index, :edit, :update] do
-    resources :comments, only: [:new, :create, :index, :edit, :update]
+      resources :comments, only: [:new, :create, :index, :edit, :update]
     end
   end 
+  
 end
 
 #resources :posts do

@@ -2,7 +2,7 @@
 
 <%= render partial: "layouts/errors", locals: {object: @comment} %>
 
-<%= form_for [@post, @comment] do |f| %>
+<%= form_for @comment, url: user_post_comment_path(current_user, @post, @comment), method: 'PATCH' do |f| %>
 
     <%= f.label :content %>
     <%= f.text_field :content %>

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    
     before_action :redirect_if_not_logged_in
     before_action :find_post, only: [:show, :edit, :update, :delete] #in each of these actions the post will be automaticaly found.
     
