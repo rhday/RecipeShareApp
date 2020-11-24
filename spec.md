@@ -1,7 +1,12 @@
 ** Rails Project Requirements **
 
 1. Use the Rubu on Rails Framework. [x]
+** Built application using Rails **
 2. Models must include at least one has_many, at least one belongs_to, and at least two has_many :through relationships and include a many-to-many relationship implemented with has_many :through associations. The join table must include a user-submittable attribute — that is to say, some attribute other than its foreign keys that can be submitted by the app's user. [x]
+** USER has_many :comments, has_many :commented_posts, through: :comments, source: :post, has_many :categories, through: :posts.
+COMMENT belongs_to :post, belongs_to :user.
+POST belongs_to :user, belongs_to :category, has_many :comments, dependent: :destroy, has_many :users, through: :comments.
+Category has_many :posts, has_many :users, through: :posts.**
 3. Your models must include reasonable validations for the simple attributes. You don't need to add every possible validation or duplicates, such as presence and a minimum length, but the models should defend against invalid data. [x]
 4. You must include at least one class level ActiveRecord scope method. a. Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (such as .where and .order) rather than native ruby methods (such as #find_all or #sort). [x]
 5. Your application must provide standard user authentication, including signup, login, logout, and passwords. [x]

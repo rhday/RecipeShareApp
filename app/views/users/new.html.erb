@@ -7,14 +7,18 @@
     <%= f.label :username %>
     <%= f.text_field :username %>
     <br>
+
     <br>
     <%= f.label :email %>
     <%= f.email_field :email %>
-    <br>
-    <br>
+    <h4>
+    Email must be a valid email address.
+    </h4>
     <%= f.label :password %>
     <%= f.password_field :password %>
-    <br>
+    <h4>
+    Password must be at least 12 characters long.
+    </h4>
     <%= f.submit "Submit" %>
 
 <% end %>
