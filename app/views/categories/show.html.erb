@@ -3,7 +3,7 @@
 
 <% @category.posts.each do |cp|%>
 
-    <%= link_to cp.title, user_post_comments_path(cp, current_user) %>
+    <%= link_to cp.title, user_post_comments_path(current_user, cp) %>
     <br>
 
 <% end %>

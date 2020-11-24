@@ -27,6 +27,7 @@ class PostsController < ApplicationController
     end 
 
     def show 
+
         redirect_to user_posts_path(current_user) if !@post
     end
     
