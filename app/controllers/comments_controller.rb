@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
     before_action :redirect_if_not_logged_in
-    before_action :find_comment, only: [:show, :edit, :update, :delete] #in each of these actions the comment in question will be automaticaly found.
+    before_action :find_comment, only: [:show, :edit, :update, :destroy] #in each of these actions the comment in question will be automaticaly found.
     before_action :find_post, only: [:create, :edit, :update]
 
     def new
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
     end
     end 
 
-    def delete
+    def destroy
         @comment.destroy
         redirect_to user_post_comments_path(@comment.post.user, @comment.post_id)
     end 

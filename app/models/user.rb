@@ -15,7 +15,7 @@ class User < ApplicationRecord
     /x
     
     validates :username, presence: true
-    validates :password, format: PASSWORD_REQUIREMENTS
+    #validates :password, format: PASSWORD_REQUIREMENTS
     ## this breaks my google omniauth sign up - add this feature later
 
 end

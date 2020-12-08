@@ -6,8 +6,8 @@
     <%= comment.content %>
     <br>
     <% if current_user.id == comment.user_id %>
-        <%= link_to "Edit comment", edit_comment_path(@post, comment) %>
-        <%= button_to "Delete comment", edit_comment_path(@post, comment), method: :delete %>
+        <%= link_to "Edit comment", edit_post_comment_path(@post, comment) %>
+        <%= button_to "Delete comment", post_comment_path(@post, comment), method: :delete %>
     <% end %>
 <% end %>
 <%= link_to "Add a new comment", new_user_post_comment_path(current_user, @post) %>

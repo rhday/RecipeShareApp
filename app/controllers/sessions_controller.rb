@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         #find_or_create a user using the attributes auth
         @user = User.find_or_create_by(email: auth["info"]["email"]) do |user|
             user.username = auth["info"]["first_name"]
-            user.password = SecureRandom.hex(12)+"aA1!"#amount of characters in password 
+            user.password = SecureRandom.hex(12)+"aA1!" #amount of characters/nubers/symbols in password and the regex to link up to google/omniauth
         end 
         if @user#.save
             session[:user_id] = @user.id

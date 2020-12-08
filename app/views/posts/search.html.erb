@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+
+<% @recipes.each do |recipe| %>
+<div>
+    <%= recipe.title %>
+    <br>
+    <%= recipe.content %>
+</div>
+<% end%>

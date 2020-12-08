@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     
     before_action :redirect_if_not_logged_in
-    before_action :find_post, only: [:show, :edit, :update, :delete] #in each of these actions the post will be automaticaly found.
+    before_action :find_post, only: [:show, :edit, :update, :destroy] #in each of these actions the post will be automaticaly found.
     
 
     def new 
@@ -18,6 +18,12 @@ class PostsController < ApplicationController
     end 
 
     def index
+        #@recipes = Post.search(params[:search])
+
+       # if params[:search_by_title] && params[:search_by_title] != ""
+        #    @recipes = @recipes.where("title like ?", "%# {params[:search_by_title]}%")
+       # end
+
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @posts = Post.all.most_comments
         else
@@ -44,9 +50,17 @@ class PostsController < ApplicationController
         end
     end 
 
-    def delete
+    def destroy
         @post.destroy
         redirect_to user_posts_path(current_user)
+    end 
+
+    def search
+        #byebug
+        @recipes = Post.search(params[:q])
+        render :search
+        #byebug
+        #@recipes = Post.where("title LIKE ?", "%" + params[:q] + "%")
     end 
 
     private

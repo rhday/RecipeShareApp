@@ -8,10 +8,25 @@ class Post < ApplicationRecord
   validates :content, :title, presence: true
 
   validate :too_many_posts
-
   #orders anything it is called on alphabetically
+
   scope :most_comments, -> {left_joins(:comments).group('posts.id').order('count(comments.post_id) desc')}
-  
+
+  def self.search(search)
+    #self.where(title: search)
+    @results = Post.all.where("lower(title) LIKE :search", search: search)
+    #byebug
+    #if search
+      ##recipe = Post.find_by(title: search)
+      ##if recipe 
+      ##  self.where(title: recipe)
+      ##else
+      ##  Post.all
+      ##end 
+    #else
+      #Post.all
+    #end 
+  end 
 
   #def category_attributes=(attr)
   #  self.category = Category.find_or_create_by(attr) if !attr[:name].blank?

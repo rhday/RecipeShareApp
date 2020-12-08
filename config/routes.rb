@@ -18,17 +18,19 @@ Rails.application.routes.draw do
   ## get "/auth/google_oauth2/callback" => 'sessions#create/google/name
 
   #edit post route
-  get 'posts/:id/edit', to: 'posts#edit', as: :edit_post
+  #get 'posts/:id/edit', to: 'posts#edit', as: :edit_post
   #update post route
-  patch 'posts/:id', to: 'posts#update'
+  #patch 'posts/:id', to: 'posts#update'
   #delete post route
-  delete 'posts/:id/edit', to: 'posts#delete'
+  #delete 'posts/:id/edit', to: 'posts#delete'
   #edit comment route
-  get 'posts/:post_id/comments/:id/edit', to: 'comments#edit', as: :edit_comment
+  #get 'posts/:post_id/comments/:id/edit', to: 'comments#edit', as: :edit_comment
   #update comment route
-  patch 'posts/:post_id/comments/:id', to: 'comments#update'
+  #patch 'posts/:post_id/comments/:id', to: 'comments#update'
   #delete comment route
-  delete 'posts/:post_id/comments/:id/edit', to: 'comments#delete'
+  #delete 'posts/:post_id/comments/:id/edit', to: 'comments#delete'
+
+get '/search' => 'posts#search', :as => 'search_posts'
 
   resources :categories do
   end 
@@ -37,6 +39,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :index, :edit, :update] do
       resources :comments, only: [:new, :create, :index, :edit, :update]
     end
+  end 
+
+  resources :posts, only: [:edit, :update, :destroy] do 
+    resources :comments, only: [:edit, :update, :destroy]
   end 
   
 end
